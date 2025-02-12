@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopWithUs - Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #ff7f50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-info {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .product-info img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-info h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .product-info p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .product-reviews {
+            margin-top: 20px;
+            color: #777;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff7f50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #ff6347;
+        }
+
+        /* Gallery Styles */
+        .product-gallery {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .product-gallery img {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .product-gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .product-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-gallery {
+                flex-direction: column;
+            }
+
+            .product-gallery img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ShopWithUs - Product Details</h1>
+</header>
+
+<div class="product-details">
+    <div class="product-info">
+        <img src="" alt="Product Image" id="main-image">
+
+        <div class="product-gallery">
+            <!-- Thumbnail images will be inserted dynamically -->
+        </div>
+
+        <h2 id="product-name">Product Name</h2>
+        <p><strong>Price:</strong> $<span id="product-price"></span></p>
+        <p id="product-description">Product description goes here.</p>
+
+        <div class="product-reviews">
+            <h3>Customer Reviews</h3>
+            <div id="reviews">
+                <!-- Reviews will be inserted dynamically -->
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">Back to Product List</a>
+    </div>
+</div>
+
+<script>
+    // Sample product data
+    const products = [
+        {
+            id: 1,
+            name: 'skirt',
+            price: '29.99',
+            description: 'All size available.',
+            image: '',
+            gallery: [
+                '',
+                'https://via.placeholder.com/300x300?text=Image+2+for+Product+1',
+                'https://via.placeholder.com/300x300?text=Image+3+for+Product+1'
+            ],
+            reviews: [
+                { name: 'Alice', rating: 4, comment: 'Great quality!' },
+                { name: 'Bob', rating: 5, comment: 'Loved it!' }
+            ]
+        },
+        {
+            id: 2,
+            name: 'Product 2',
+            price: '49.99',
+            description: 'This is the description for Product 2.',
+            image: 'https://via.placeholder.com/500x500?text=Product+2',
+            gallery: [
+                'https://via.placeholder.com/300x300?text=Image+1+for+Product+2',
+                'https://via.placeholder.com/300x300?text=Image+2+for+Product+2',
+                'https://via.placeholder.com/300x300?text=Image+3+for+Product+2'
+            ],
+            reviews: [
+                { name: 'Charlie', rating: 3, comment: 'It’s okay.' },
+                { name: 'Diana', rating: 4, comment: 'Good value for the price.' }
+            ]
+        },
+        {
+            id: 3,
+            name: 'Product 3',
+            price: '499',
+            description: 'This is the description for Product 2.',
+            image: 'https://via.placeholder.com/500x500?text=Product+2',
+            gallery: [
+                'https://via.placeholder.com/300x300?text=Image+1+for+Product+2',
+                'https://via.placeholder.com/300x300?text=Image+2+for+Product+2',
+                'https://via.placeholder.com/300x300?text=Image+3+for+Product+2'
+            ],
+            reviews: [
+                { name: 'Charlie', rating: 3, comment: 'It’s okay.' },
+                { name: 'Diana', rating: 4, comment: 'Good value for the price.' }
+            ]
+        },
+        {
+            id: 4,
+            name: 'Product 4',
+            price: 'Rs.155',
+            description: 'This is the description for Product 2.',
+            image: 'https://via.placeholder.com/500x500?text=Product+2',
+            gallery: [
+                'https://via.placeholder.com/300x300?text=Image+1+for+Product+2',
+                'https://via.placeholder.com/300x300?text=Image+2+for+Product+2',
+                'https://via.placeholder.com/300x300?text=Image+3+for+Product+2'
+            ],
+            reviews: [
+                { name: 'Charlie', rating: 3, comment: 'It’s okay.' },
+                { name: 'Diana', rating: 4, comment: 'Good value for the price.' }
+            ]
+        },
+        // Add more products here
+    ];
+
+    // Extract product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+
+    // Find the selected product
+    const selectedProduct = products.find(product => product.id == productId);
+
+    // Populate the page with the selected product's details
+    if (selectedProduct) {
+        document.getElementById('main-image').src = selectedProduct.image;
+        document.getElementById('product-name').innerText = selectedProduct.name;
+        document.getElementById('product-price').innerText = selectedProduct.price;
+        document.getElementById('product-description').innerText = selectedProduct.description;
+
+        // Add the gallery images
+        const gallery = document.querySelector('.product-gallery');
+        selectedProduct.gallery.forEach(image => {
+            const img = document.createElement('img');
+            img.src = image;
+            img.alt = 'Gallery Image';
+            gallery.appendChild(img);
+        });
+
+        // Add the reviews
+        const reviewsDiv = document.getElementById('reviews');
+        selectedProduct.reviews.forEach(review => {
+            const reviewText = document.createElement('p');
+            reviewText.innerText = `${review.name}: ${review.rating}/5 - ${review.comment}`;
+            reviewsDiv.appendChild(reviewText);
+        });
+    }
+</script>
+
+</body>
+</html>
