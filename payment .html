@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f3f3;
+        }
+        .payment-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .qr-code img {
+            width: 200px;
+            margin: 10px 0;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+            padding: 5px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment Section</h1>
+        <p>Scan the QR code below to make a payment.</p>
+        <div class="qr-code">
+            <img src="your-qr-code-image.png" alt="QR Code">
+        </div>
+        <form id="payment-form">
+            <label for="screenshot">Upload Payment Screenshot:</label>
+            <input type="file" id="screenshot" name="screenshot" accept="image/*" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="response" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const responseDiv = document.getElementById('response');
+            responseDiv.innerText = "Your order is in Pending. When it's confirmed, we will inform you. Thanks for choosing us!";
+        });
+    </script>
+</body>
+</html>
