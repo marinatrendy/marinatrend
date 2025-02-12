@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-container input,
+    .form-container select,
+    .form-container textarea,
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .form-container button {
+      background-color: #28a745;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .form-container button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Fill Your Details</h2>
+    <form action="submit.html" method="post">
+      <!-- Name -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <!-- Contact Number -->
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" required pattern="[0-9]{10}">
+
+      <!-- Full Address -->
+      <label for="address">Full Address:</label>
+      <textarea id="address" name="address" placeholder="Enter your full address" rows="3" required></textarea>
+
+      <!-- Height -->
+      <label for="height">Height (in cm):</label>
+      <input type="number" id="height" name="height" placeholder="Enter your height" required>
+
+      <!-- Weight -->
+      <label for="weight">Weight (in kg):</label>
+      <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
+
+      <!-- Size -->
+      <label for="size">Select Your Size:</label>
+      <select id="size" name="size" required>
+        <option value="" disabled selected>Choose size</option>
+        <option value="S">Small (S)</option>
+        <option value="M">Medium (M)</option>
+        <option value="L">Large (L)</option>
+        <option value="XL">Extra Large (XL)</option>
+      </select>
+
+      <!-- Age -->
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" placeholder="Enter your age" required min="1">
+
+      <!-- Submit Button -->
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
