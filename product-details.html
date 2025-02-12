@@ -101,6 +101,44 @@
                 height: auto;
             }
         }
+        .buy-now-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  background-color: #ff5722;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.buy-now-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.buy-now-btn:hover::before {
+  width: 100%;
+}
+
+.buy-now-btn:hover {
+  color: #ff5722;
+  background-color: #fff;
+  border: 2px solid #ff5722;
+  box-shadow: 0 0 15px #ff5722;
+}
     </style>
 </head>
 <body>
